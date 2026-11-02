@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketTrack — Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="shell">
+
+    <!-- Header -->
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE</p>
+        <h1>PocketTrack<span>.</span></h1>
+      </div>
+      <div class="status">
+        <i></i> Connected to API
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="intro">
+      <div>
+        <p class="eyebrow">YOUR MONEY, IN FOCUS</p>
+        <h2>Know where it<br>all goes.</h2>
+        <p class="muted">
+          A clearer picture of your everyday spending.
+        </p>
+      </div>
+      <div class="intro-mark">₹</div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+      <article class="stat-card">
+        <p>ALL-TIME SPENDING</p>
+        <strong id="allTimeTotal">₹0.00</strong>
+      </article>
+
+      <article class="stat-card accent">
+        <p>THIS MONTH</p>
+        <strong id="monthTotal">₹0.00</strong>
+      </article>
+
+      <article class="stat-card">
+        <p>TRANSACTIONS</p>
+        <strong id="expenseCount">0</strong>
+      </article>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-grid">
+
+      <!-- Add Expense Form -->
+      <section class="panel form-panel">
+
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">QUICK ENTRY</p>
+            <h3 id="formHeading">Add an expense</h3>
+          </div>
+          <span class="plus">＋</span>
+        </div>
+
+        <form id="expenseForm">
+
+          <label>
+            What did you spend on?
+            <input
+              id="title"
+              maxlength="100"
+              placeholder="e.g. Groceries"
+              required
+            >
+          </label>
+
+          <div class="two-col">
+
+            <label>
+              Amount (₹)
+              <input
+                id="amount"
+                type="number"
+                min="0.01"
+                step="0.01"
+                placeholder="0.00"
+                required
+              >
+            </label>
+
+            <label>
+              Date
+              <input
+                id="expenseDate"
+                type="date"
+                required
+              >
+            </label>
+
+          </div>
+
+          <!-- Expense Categories -->
+          <label>
+            Category
+
+            <select id="category" required>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Travel">Travel</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Health">Health</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Education">Education</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            Notes
+            <span class="optional">(optional)</span>
+
+            <textarea
+              id="notes"
+              maxlength="500"
+              rows="3"
+              placeholder="Add a little detail..."
+            ></textarea>
+          </label>
+
+          <div class="form-actions">
+
+            <button
+              class="primary"
+              type="submit"
+              id="submitButton"
+            >
+              Save expense <span>↗</span>
+            </button>
+
+            <button
+              class="text-button hidden"
+              type="button"
+              id="cancelEdit"
+            >
+              Cancel
+            </button>
+
+          </div>
+
+          <p
+            id="formMessage"
+            class="message"
+            role="status"
+          ></p>
+
+        </form>
+      </section>
+
+      <!-- Expense List -->
+      <section class="panel list-panel">
+
+        <div class="panel-heading list-heading">
+          <div>
+            <p class="eyebrow">ACTIVITY</p>
+            <h3>Your expenses</h3>
+          </div>
+
+          <span class="count-pill" id="listCount">
+            0 records
+          </span>
+        </div>
+
+        <!-- Search and Category Filter -->
+        <div class="filters">
+
+          <input
+            id="search"
+            type="search"
+            placeholder="Search expenses..."
+            aria-label="Search expenses"
+          >
+
+          <select
+            id="filterCategory"
+            aria-label="Filter by category"
+          >
+            <option value="">All categories</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Travel">Travel</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Health">Health</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Education">Education</option>
+            <option value="Other">Other</option>
+          </select>
+
+        </div>
+
+        <!-- Dynamic Expense List -->
+        <div id="expenseList" class="expense-list">
+          <div class="empty">
+            Loading your expenses...
+          </div>
+        </div>
+
+      </section>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      POCKETTRACK <span>·</span> Built with Spring Boot + MySQL
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
